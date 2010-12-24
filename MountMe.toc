@@ -1,0 +1,7 @@
+## Interface: 40300
+## Title: MountMe
+## Notes: Randomly selects a mount for you to ride!
+## Author: Astiroth and Delwyna
+## Version: 0.0.1 (alpha)
+
+core.lua
