@@ -25,10 +25,20 @@ local function ChooseMount(maximum)
 	return number;	
 end
 
+local function GetMountCount(mountlist)
+	local counter = 0;
+	for i = 1, getn(mountlist) do
+		counter = counter + 1;
+	end
+	return counter;
+end
+
 function RandomMount() 
 	local isflyablezone = IsFlyableArea();
-	local numberofgroundmounts = 0;
-	local numberofflyingmounts = 0;
+	local numberofgroundmounts = GetMountCount(groundmounts);
+	local numberofflyingmounts = GetMountCount(flyingmounts);
+	
+	print("Flying Mount Count = " .. numberofflyingmounts .. "\nGround Mount Count = " .. numberofgroundmounts);
 	
 	-- Dismount player if they are already mounted
 	if(IsMounted()) then
@@ -41,7 +51,7 @@ function RandomMount()
 			-- if they can't call a ground mount
 	else
 		-- Call a ground mount
-		CastSpellByName(groundmounts[ChooseMount()];
+		--CastSpellByName(groundmounts[ChooseMount(numberofgroundmounts)]);
 	end	
 	
 end
