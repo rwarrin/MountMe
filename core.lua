@@ -105,3 +105,12 @@ end
 -- Create frame for addon and register for events
 local MountMe = CreateFrame("FRAME", "MountMe_Frame", UIParent);
 DEFAULT_CHAT_FRAME:AddMessage("MountMe Loaded.");
+
+-- Create slash command
+SLASH_MOUNTME1 = "/mountme";
+SLASH_MOUNTME2 = "/mm";
+SlashCmdList["MOUNTME"] = function() RandomMount(); end
+
+
+
+
