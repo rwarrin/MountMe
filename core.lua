@@ -11,7 +11,9 @@ local flyingmounts = {
 
 local groundmounts = {
 	{"Swift Brown Steed"},
-	{"Swift Black War Horse"},
+	{"Black War Steed"},
+	{"Swift White Steed"},
+	{"Swift Palomino"},
 }
 
 local PLAYERCANFLY = true;
