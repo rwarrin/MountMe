@@ -2,6 +2,7 @@
 ## Title: MountMe
 ## Notes: Randomly selects a mount for you to ride!
 ## Author: Astiroth and Delwyna
-## Version: 1.0.0
+## Version: 1.0.1
 
+config.lua
 core.lua
