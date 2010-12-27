@@ -1,25 +1,54 @@
+local playername = GetUnitName("player");
+local flyingmounts;
+local groundmounts;
 -------------------- CONFIG --------------------
+--  HELP:
+--  Put one of your characters names in the area
+--  below.  Set up the mounts you would like to
+--  choose from, as well as riding skills. If
+--  you don't do this you probably won't like
+--  the default configuration.
 
-local flyingmounts = {
-	{"Black Drake"},
-	{"Vitreous Stone Drake"},
-	{"Blue Proto-Drake"},
-	{"Bronze Drake"},
-	{"Violet Proto-Drake"},
+if(playername == "Astiroth") then
+	flyingmounts = {
+		{"Vitreous Stone Drake"},
+		{"Blue Proto-Drake"},		
+	}
+
+	groundmounts = {
+		{"Swift Brown Steed"},
+	}
 	
-}
+	CHARACTER_CAN_FLY = true;
+	SKILL_NORTHREND_FLYING = true;
+	SKILL_OLDWORLD_FLYING = true;
+	
+elseif(playername == "AnotherCharacter") then
+	flyingmounts = {
+			
+		}
 
-local groundmounts = {
-	{"Swift Brown Steed"},
-	{"Black War Steed"},
-	{"Swift White Steed"},
-	{"Swift Palomino"},
-}
+		groundmounts = {
 
-local PLAYERCANFLY = true;
-local FLYABLEZONE_NORTHREND = true;
-local FLYABLEZONE_OLDWORLD = true;
+		}
+		
+		CHARACTER_CAN_FLY = false;
+		SKILL_NORTHREND_FLYING = false;
+		SKILL_OLDWORLD_FLYING = false;
+else
+	flyingmounts = {
+		{"Black Drake"},
+		
+	}
 
+	groundmounts = {
+		{"Swift Brown Steed"},
+	}
+
+	CHARACTER_CAN_FLY = false;
+	SKILL_NORTHREND_FLYING = false;
+	SKILL_OLDWORLD_FLYING = false;
+end
 -------------------- CONFIG --------------------
 
 local function ChooseMount(maximum)
@@ -46,12 +75,12 @@ function RandomMount()
 		Dismount();
 	end
 		
-	if(PLAYERCANFLY == true) then
+	if(CHARACTER_CAN_FLY == true) then
 		if(isflyablezone == 1) then
 			if(currentcontinent == -1) then -- Battleground
 				CastSpellByName(groundmounts[ChooseMount(numberofgroundmounts)][1]);
 			elseif(currentcontinent == 1 or currentcontinent == 2) then -- Kalimdor or Eastern Kingdoms
-				if(FLYABLEZONE_OLDWORLD == true) then
+				if(SKILL_OLDWORLD_FLYING == true) then
 					CastSpellByName(flyingmounts[ChooseMount(numberofflyingmounts)][1]);
 				else
 					CastSpellByName(groundmounts[ChooseMount(numberofgroundmounts)][1]);
@@ -59,7 +88,7 @@ function RandomMount()
 			elseif(currentcontinent == 3) then -- Outlands
 					CastSpellByName(flyingmounts[ChooseMount(numberofflyingmounts)][1]);
 			elseif(currentcontinent == 3) then -- Northrend
-				if(FLYABLEZONE_NORTHREND == true) then
+				if(SKILL_NORTHREND_FLYING == true) then
 					CastSpellByName(flyingmounts[ChooseMount(numberofflyingmounts)][1]);
 				else
 					CastSpellByName(groundmounts[ChooseMount(numberofgroundmounts)][1]);
