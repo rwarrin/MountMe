@@ -1,6 +1,4 @@
 local playername = GetUnitName("player");
---local flyingmounts;
---local groundmounts;
 -------------------- CONFIG --------------------
 --  HELP:
 --  Put one of your characters names in the area

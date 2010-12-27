@@ -26,7 +26,7 @@ function RandomMount()
 		if(isflyablezone == 1) then
 			if(currentcontinent == -1) then -- Battleground
 				CastSpellByName(groundmounts[ChooseMount(numberofgroundmounts)][1]);
-			elseif(currentcontinent == 1 or currentcontinent == 2) then -- Kalimdor or Eastern Kingdoms
+			elseif(currentcontinent == 1 or currentcontinent == 2 or currentcontinent == 5) then -- Kalimdor or Eastern Kingdoms or Deepholm
 				if(SKILL_OLDWORLD_FLYING == true) then
 					CastSpellByName(flyingmounts[ChooseMount(numberofflyingmounts)][1]);
 				else
