@@ -35,6 +35,7 @@ end
 
 function RandomMount() 
 	local isflyablezone = IsFlyableArea();
+	local currentcontinent = GetCurrentMapContinent();
 	local numberofgroundmounts = GetMountCount(groundmounts);
 	local numberofflyingmounts = GetMountCount(flyingmounts);
 	
@@ -45,17 +46,32 @@ function RandomMount()
 		Dismount();
 	end
 		
-	if(isflyablezone == true) then
-		-- Get the continent to see if the player can fly there
-			-- if they can call a flying mount
-			-- if they can't call a ground mount
+	if(PLAYERCANFLY == true) then
+		if(isflyablezone == 1) then
+			if(currentcontinent == -1) then -- Battleground
+				CastSpellByName(groundmounts[ChooseMount(numberofgroundmounts)][1]);
+			elseif(currentcontinent == 1 or currentcontinent == 2) then -- Kalimdor or Eastern Kingdoms
+				if(FLYABLEZONE_OLDWORLD == true) then
+					CastSpellByName(flyingmounts[ChooseMount(numberofflyingmounts)][1]);
+				else
+					CastSpellByName(groundmounts[ChooseMount(numberofgroundmounts)][1]);
+				end
+			elseif(currentcontinent == 3) then -- Outlands
+					CastSpellByName(flyingmounts[ChooseMount(numberofflyingmounts)][1]);
+			elseif(currentcontinent == 3) then -- Northrend
+				if(FLYABLEZONE_NORTHREND == true) then
+					CastSpellByName(flyingmounts[ChooseMount(numberofflyingmounts)][1]);
+				else
+					CastSpellByName(groundmounts[ChooseMount(numberofgroundmounts)][1]);
+				end
+			end
+		else
+			CastSpellByName(groundmounts[ChooseMount(numberofgroundmounts)][1]);
+		end	
 	else
-		-- Call a ground mount
-		--CastSpellByName(groundmounts[ChooseMount(numberofgroundmounts)]);
-	end	
-	
+		CastSpellByName(groundmounts[ChooseMount(numberofgroundmounts)][1]);
+	end
 end
-
 
 -- Create frame for addon and register for events
 local MountMe = CreateFrame("FRAME", "MountMe_Frame", UIParent);
