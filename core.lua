@@ -1,13 +1,23 @@
 -------------------- CONFIG --------------------
 
-local mounts = {
-	{"Black Drake", true},
-	{"Vitreous Stone Drake", true},
-	{"Blue Proto-Drake", true},
-	{"Bronze Drake", true},
-	{"Violet Proto-Drake", true},
+local flyingmounts = {
+	{"Black Drake"},
+	{"Vitreous Stone Drake"},
+	{"Blue Proto-Drake"},
+	{"Bronze Drake"},
+	{"Violet Proto-Drake"},
 	
 }
+
+local groundmounts = {
+	{"Swift Brown Steed"},
+	{"Swift Black War Horse"},
+}
+
+local PLAYERCANFLY = true;
+local FLYABLEZONE_NORTHREND = true;
+local FLYABLEZONE_OLDWORLD = true;
+
 -------------------- CONFIG --------------------
 
 local function ChooseMount(maximum)
@@ -16,23 +26,23 @@ local function ChooseMount(maximum)
 end
 
 function RandomMount() 
-	local counter = 0;
-	for key, value in pairs(mounts) do
-		counter = counter + 1;
+	local isflyablezone = IsFlyableArea();
+	local numberofgroundmounts = 0;
+	local numberofflyingmounts = 0;
+	
+	-- Dismount player if they are already mounted
+	if(IsMounted()) then
+		Dismount();
 	end
-	DEFAULT_CHAT_FRAME:AddMessage("Mounts = " .. counter);
-	
-	local choice = ChooseMount(counter);
-	DEFAULT_CHAT_FRAME:AddMessage("Choice = " .. choice);
-	
-	DEFAULT_CHAT_FRAME:AddMessage("Name = " .. mounts[choice][1]);
-	CastSpellByName(mounts[choice][1]);
-	
-	if(IsFlyableArea() == false and mounts[choice][2] == true) then
-		choice = ChooseMount(counter);
-	else
 		
-	end
+	if(isflyablezone == true) then
+		-- Get the continent to see if the player can fly there
+			-- if they can call a flying mount
+			-- if they can't call a ground mount
+	else
+		-- Call a ground mount
+		CastSpellByName(groundmounts[ChooseMount()];
+	end	
 	
 end
 
@@ -40,5 +50,3 @@ end
 -- Create frame for addon and register for events
 local MountMe = CreateFrame("FRAME", "MountMe_Frame", UIParent);
 DEFAULT_CHAT_FRAME:AddMessage("MountMe Loaded.");
-
-
