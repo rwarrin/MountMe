@@ -39,8 +39,6 @@ function RandomMount()
 	local numberofgroundmounts = GetMountCount(groundmounts);
 	local numberofflyingmounts = GetMountCount(flyingmounts);
 	
-	print("Flying Mount Count = " .. numberofflyingmounts .. "\nGround Mount Count = " .. numberofgroundmounts);
-	
 	-- Dismount player if they are already mounted
 	if(IsMounted()) then
 		Dismount();
