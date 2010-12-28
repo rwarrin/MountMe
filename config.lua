@@ -4,8 +4,8 @@ local playername = GetUnitName("player");
 --  Put one of your characters names in the area
 --  below.  Set up the mounts you would like to
 --  choose from, as well as riding skills. If
---  you don't do this you probably won't like
---  the default configuration.
+--  you don't do this the addon will probably
+--  not work for you.
 
 if(playername == "Astiroth") then
 	flyingmounts = {

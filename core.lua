@@ -16,8 +16,7 @@ function RandomMount()
 	local currentcontinent = GetCurrentMapContinent();
 	local numberofgroundmounts = GetMountCount(groundmounts);
 	local numberofflyingmounts = GetMountCount(flyingmounts);
-	
-	-- Dismount player if they are already mounted
+
 	if(IsMounted()) then
 		Dismount();
 	end
@@ -57,7 +56,3 @@ DEFAULT_CHAT_FRAME:AddMessage("MountMe Loaded.");
 SLASH_MOUNTME1 = "/mountme";
 SLASH_MOUNTME2 = "/mm";
 SlashCmdList["MOUNTME"] = function() RandomMount(); end
-
-
-
-
