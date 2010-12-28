@@ -24,15 +24,16 @@ if(playername == "Astiroth") then
 elseif(playername == "AnotherCharacter") then
 	flyingmounts = {
 			
-		}
+	}
 
-		groundmounts = {
+	groundmounts = {
 
-		}
-		
-		CHARACTER_CAN_FLY = false;
-		SKILL_NORTHREND_FLYING = false;
-		SKILL_OLDWORLD_FLYING = false;
+	}
+	
+	CHARACTER_CAN_FLY = false;
+	SKILL_NORTHREND_FLYING = false;
+	SKILL_OLDWORLD_FLYING = false;
+
 else
 	flyingmounts = {
 		{"Black Drake"},
