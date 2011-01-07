@@ -14,11 +14,19 @@ end
 function RandomMount() 
 	local isflyablezone = IsFlyableArea();
 	local currentcontinent = GetCurrentMapContinent();
+	local currentzonename = GetZoneText();
 	local numberofgroundmounts = GetMountCount(groundmounts);
 	local numberofflyingmounts = GetMountCount(flyingmounts);
 
 	if(IsMounted()) then
 		Dismount();
+	end
+	
+	-- Check if the player is in Vashj'ir
+	if(currentzonename == "Abyssal Depths" or currentzonename == "Shimmering Expanse" or currentzonename == "Kelp'thar Forrest") then
+		if(IsSwimming()) then
+			CastSpellByName("Abyssal Seahorse");
+		end
 	end
 		
 	if(CHARACTER_CAN_FLY == true) then
