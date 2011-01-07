@@ -11,6 +11,14 @@ local function GetMountCount(mountlist)
 	return counter;
 end
 
+local function SummonGroundMount(numberofgroundmounts)
+	CastSpellByName(groundmounts[ChooseMount(numberofgroundmounts)][1]);
+end
+
+local function SummonFlyingMount(numberofflyingmounts)
+	CastSpellByName(flyingmounts[ChooseMount(numberofflyingmounts)][1]);
+end
+
 function RandomMount() 
 	local isflyablezone = IsFlyableArea();
 	local currentcontinent = GetCurrentMapContinent();
@@ -32,27 +40,27 @@ function RandomMount()
 	if(CHARACTER_CAN_FLY == true) then
 		if(isflyablezone == 1) then
 			if(currentcontinent == -1) then -- Battleground
-				CastSpellByName(groundmounts[ChooseMount(numberofgroundmounts)][1]);
+				SummonGroundMount(numberofgroundmounts);
 			elseif(currentcontinent == 1 or currentcontinent == 2 or currentcontinent == 5) then -- Kalimdor or Eastern Kingdoms or Deepholm
 				if(SKILL_OLDWORLD_FLYING == true) then
-					CastSpellByName(flyingmounts[ChooseMount(numberofflyingmounts)][1]);
+					SummonFlyingMount(numberofflyingmounts);
 				else
-					CastSpellByName(groundmounts[ChooseMount(numberofgroundmounts)][1]);
+					SummonGroundMount(numberofgroundmounts);
 				end
 			elseif(currentcontinent == 3) then -- Outlands
-					CastSpellByName(flyingmounts[ChooseMount(numberofflyingmounts)][1]);
-			elseif(currentcontinent == 3) then -- Northrend
+					SummonFlyingMount(numberofflyingmounts);
+			elseif(currentcontinent == 4) then -- Northrend
 				if(SKILL_NORTHREND_FLYING == true) then
-					CastSpellByName(flyingmounts[ChooseMount(numberofflyingmounts)][1]);
+					SummonFlyingMount(numberofflyingmounts);
 				else
-					CastSpellByName(groundmounts[ChooseMount(numberofgroundmounts)][1]);
+					SummonGroundMount(numberofgroundmounts);
 				end
 			end
 		else
-			CastSpellByName(groundmounts[ChooseMount(numberofgroundmounts)][1]);
+			SummonGroundMount(numberofgroundmounts);
 		end	
 	else
-		CastSpellByName(groundmounts[ChooseMount(numberofgroundmounts)][1]);
+		SummonGroundMount(numberofgroundmounts);
 	end
 end
 
