@@ -75,7 +75,7 @@ function RandomMount()
                         SummonMount("FLYING", numberofflyingmounts)
 
                 -- Check if the player is in Draenor and has the Path Finder achievement
-                elseif(currentcontinent ==  7) then
+                elseif(currentcontinent == 7) then
                         if(pathfinderachievement == true) then
                             SummonMount("FLYING", numberofflyingmounts)
                         else
