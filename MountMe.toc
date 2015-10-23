@@ -1,4 +1,4 @@
-## Interface: 40300
+## Interface: 60200
 ## Title: MountMe
 ## Notes: Randomly selects a mount for you to ride!
 ## Author: Astiroth and Delwyna
