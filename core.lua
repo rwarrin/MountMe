@@ -25,7 +25,8 @@ function RandomMount()
 	local currentzonename = GetZoneText();
 	local numberofgroundmounts = GetMountCount(groundmounts);
 	local numberofflyingmounts = GetMountCount(flyingmounts);
-        local pathfinderachievement = select(4, GetAchievementInfo(10018));
+  local pathfinderachievementDraenor = select(4, GetAchievementInfo(10018));
+  local pathfinderachievementLegion = select(4, GetAchievementInfo(11446));
 
 	if(IsMounted()) then
 		Dismount();
@@ -76,11 +77,19 @@ function RandomMount()
 
                 -- Check if the player is in Draenor and has the Path Finder achievement
                 elseif(currentcontinent == 7) then
-                        if(pathfinderachievement == true) then
+                        if(pathfinderachievementDraenor == true) then
                             SummonMount("FLYING", numberofflyingmounts)
                         else
                             SummonMount("GROUND", numberofgroundmounts)
                         end
+
+                -- Check if the player is in Broken Isles and has the Path Finder achievement
+                elseif(currentcontinent == 8) then
+                  if(pathfinderachievementLegion == true) then
+                      SummonMount("FLYING", numberofflyingmounts)
+                  else
+                      SummonMount("GROUND", numberofgroundmounts)
+                  end
 		
 		-- Player can't fly anywhere
 		else
