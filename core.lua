@@ -27,6 +27,7 @@ function RandomMount()
 	local numberofflyingmounts = GetMountCount(flyingmounts);
   local pathfinderachievementDraenor = select(4, GetAchievementInfo(10018));
   local pathfinderachievementLegion = select(4, GetAchievementInfo(11446));
+  local pathfinderachievementBfA = select(4, GetAchievementInfo(13250));
 
 	if(IsMounted()) then
 		Dismount();
@@ -89,7 +90,15 @@ function RandomMount()
                       SummonMount("FLYING", numberofflyingmounts)
                   else
                       SummonMount("GROUND", numberofgroundmounts)
-                  end
+									end
+									
+								-- Check if the player is in Kul Tiras and Zandalar and has the Path Finder achievement
+								elseif(currentcontinent == 10) then
+									if(pathfinderachievementBfA == true) then
+											SummonMount("FLYING", numberofflyingmounts)
+									else
+											SummonMount("GROUND", numberofgroundmounts)
+									end
 		
 		-- Player can't fly anywhere
 		else
