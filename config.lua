@@ -37,7 +37,7 @@ elseif(playername == "AnotherCharacter") then
 else
 	flyingmounts = {
 		{"Black Drake"},
-		
+		{"Swift Blue Gryphon"}
 	}
 
 	groundmounts = {
