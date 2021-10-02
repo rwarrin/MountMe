@@ -21,13 +21,14 @@ end
 
 function RandomMount() 
 	local isflyablezone = IsFlyableArea();
-	local currentcontinent = GetCurrentMapContinent();
-	local currentzonename = GetZoneText();
+	local name, instanceType, difficultyID, difficultyName, maxPlayers, dynamicDifficulty, isDynamic, instanceID, instanceGroupSize, LfgDungeonID = GetInstanceInfo();
+	local currentzonename = GetRealZoneText();
 	local numberofgroundmounts = GetMountCount(groundmounts);
 	local numberofflyingmounts = GetMountCount(flyingmounts);
-  local pathfinderachievementDraenor = select(4, GetAchievementInfo(10018));
-  local pathfinderachievementLegion = select(4, GetAchievementInfo(11446));
-  local pathfinderachievementBfA = select(4, GetAchievementInfo(13250));
+	local pathfinderachievementDraenor = select(4, GetAchievementInfo(10018));
+	local pathfinderachievementLegion = select(4, GetAchievementInfo(11446));
+	local pathfinderachievementBfA = select(4, GetAchievementInfo(13250));
+	local pathfinderQuestShadowlands = C_QuestLog.IsQuestFlaggedCompleted(63727);
 
 	if(IsMounted()) then
 		Dismount();
@@ -46,59 +47,67 @@ function RandomMount()
 	end
 	
 	-- Check to see if the zone is a Battleground
-	if(currentcontinent == -1) then
+	if(instanceID == -1) then
 		SummonMount("GROUND", numberofgroundmounts);
 	end
 	
 	-- Check to see if the player can fly or not
 	if(CHARACTER_CAN_FLY == true) then
 		-- Check if the player is in Kalimdor
-		if(currentcontinent == 1 and SKILL_OLDWORLD_FLYING == true) then
+		if(instanceID == 1 and SKILL_OLDWORLD_FLYING == true) then
 			SummonMount("FLYING", numberofflyingmounts)
 		
 		-- Check if the player is in Eastern Kingdoms
-		elseif(currentcontinent == 2 and SKILL_OLDWORLD_FLYING == true) then
+		elseif(instanceID == 2 and SKILL_OLDWORLD_FLYING == true) then
 			SummonMount("FLYING", numberofflyingmounts);
 					
 		-- Check if the player is in Deepholm
-		elseif(currentcontinent == 5 and SKILL_OLDWORLD_FLYING == true) then
+		elseif(instanceID == 5 and SKILL_OLDWORLD_FLYING == true) then
 			SummonMount("FLYING", numberofflyingmounts)
 			
 		-- Check if the player is in Outlands
-		elseif(currentcontinent == 3) then
+		elseif(instanceID == 530) then
 			SummonMount("FLYING", numberofflyingmounts)
 		
 		-- Check if the player is in Northrend
-		elseif(currentcontinent == 4) then
+		elseif(instanceID == 571) then
 			SummonMount("FLYING", numberofflyingmounts)
 
-                -- Check if the player is in Panderia
-                elseif(currentcontinent == 6) then
-                        SummonMount("FLYING", numberofflyingmounts)
+		-- Check if the player is in Panderia
+		elseif(instanceID == 860 or instanceID == 870 or instanceID == 1064) then
+				SummonMount("FLYING", numberofflyingmounts)
 
-                -- Check if the player is in Draenor and has the Path Finder achievement
-                elseif(currentcontinent == 7) then
-                        if(pathfinderachievementDraenor == true) then
-                            SummonMount("FLYING", numberofflyingmounts)
-                        else
-                            SummonMount("GROUND", numberofgroundmounts)
-                        end
+		-- Check if the player is in Draenor and has the Path Finder achievement
+		elseif(instanceID == 1116 or instanceID == 1191 or instanceID == 1464) then
+				if(pathfinderachievementDraenor == true) then
+					SummonMount("FLYING", numberofflyingmounts)
+				else
+					SummonMount("GROUND", numberofgroundmounts)
+				end
 
-                -- Check if the player is in Broken Isles and has the Path Finder achievement
-                elseif(currentcontinent == 8) then
-                  if(pathfinderachievementLegion == true) then
-                      SummonMount("FLYING", numberofflyingmounts)
-                  else
-                      SummonMount("GROUND", numberofgroundmounts)
-									end
+		-- Check if the player is in Broken Isles and has the Path Finder achievement
+		elseif(instanceID == 1220 or instanceID == 1669) then
+			if(pathfinderachievementLegion == true) then
+				SummonMount("FLYING", numberofflyingmounts)
+			else
+				SummonMount("GROUND", numberofgroundmounts)
+							end
 									
-								-- Check if the player is in Kul Tiras and Zandalar and has the Path Finder achievement
-								elseif(currentcontinent == 10) then
-									if(pathfinderachievementBfA == true) then
-											SummonMount("FLYING", numberofflyingmounts)
-									else
-											SummonMount("GROUND", numberofgroundmounts)
-									end
+		-- Check if the player is in Kul Tiras and Zandalar and has the Path Finder achievement
+		elseif(instanceID == 1642 or instanceID == 1643 or instanceID == 1718) then
+			if(pathfinderachievementBfA == true) then
+					SummonMount("FLYING", numberofflyingmounts)
+			else
+					SummonMount("GROUND", numberofgroundmounts)
+			end
+
+		-- Check if the player is in Shadowlands zones and as the Path Finder quest complete
+		elseif(instanceID == 2222) then
+			if (pathfinderQuestShadowlands == true) then
+				SummonMount("FLYING", numberofflyingmounts)
+			else
+				SummonMount("GROUND", numberofgroundmounts)
+			end
 		
 		-- Player can't fly anywhere
 		else
