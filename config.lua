@@ -21,6 +21,19 @@ if(playername == "Astiroth") then
 	SKILL_NORTHREND_FLYING = true;
 	SKILL_OLDWORLD_FLYING = true;
 	
+elseif(playername == "Dethsnek") then
+	flyingmounts = {
+		{"Invincible"},
+	}
+
+	groundmounts = {
+		{"Invincible"},
+	}
+	
+	CHARACTER_CAN_FLY = true;
+	SKILL_NORTHREND_FLYING = true;
+	SKILL_OLDWORLD_FLYING = true;
+
 elseif(playername == "AnotherCharacter") then
 	flyingmounts = {
 			
