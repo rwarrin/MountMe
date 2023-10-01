@@ -1,8 +1,8 @@
-## Interface: 90207
+## Interface: 100105
 ## Title: MountMe
 ## Notes: Randomly selects a mount for you to ride!
 ## Author: Astiroth and Delwyna
-## Version: 2.1.0
+## Version: 2.2.0
 
 config.lua
 core.lua
